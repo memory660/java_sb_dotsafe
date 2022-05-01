@@ -30,6 +30,7 @@ GET http://localhost:8080/api/tutorials/published
 ```
 GET http://localhost:8080/api/contributions
 GET http://localhost:8080/api/users
+GET http://localhost:8080/api/users/1/contributions
 ```
 
 # Read Me First
