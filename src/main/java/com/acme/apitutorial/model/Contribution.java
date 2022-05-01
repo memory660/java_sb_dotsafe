@@ -1,9 +1,8 @@
 package com.acme.apitutorial.model;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.Date;
 
 @Entity
 @Table(name = "contribution")
@@ -18,17 +17,27 @@ public class Contribution {
     @JoinColumn(name = "project_id")
     private Project project;
 
-
     @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "techno_id")
     private Techno techno;
 
-
     @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @JoinColumn(name = "created_at")
+    private Date createdAt;
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public User getUser() {
         return user;
@@ -62,4 +71,8 @@ public class Contribution {
         this.id = id;
     }
 
+    @PrePersist
+    protected void prePersist() {
+        if (this.createdAt == null) createdAt = new Date();
+    }
 }
