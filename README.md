@@ -17,17 +17,20 @@ POST http://localhost:8080/api/tutorials
 }
 ```
 
-// mettre en base de données published = true, pour: title2
-// mettre en base de données created_at = 2022-04-10 10:09:10
+// mettre en base de données published = true, pour: title2  
+// mettre en base de données created_at = 2022-04-10 10:09:10  
 
+```
 GET http://localhost:8080/api/tutorials/1
 GET http://localhost:8080/api/tutorials/published
+```
 
 # DOTSAFE
 
+```
 GET http://localhost:8080/api/contributions
 GET http://localhost:8080/api/users
-
+```
 
 # Read Me First
 The following was discovered as part of building this project:
