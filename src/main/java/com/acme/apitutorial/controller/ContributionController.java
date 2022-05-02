@@ -1,5 +1,6 @@
 package com.acme.apitutorial.controller;
 
+import com.acme.apitutorial.dto.ContributionDto;
 import com.acme.apitutorial.model.Contribution;
 import com.acme.apitutorial.repository.ContributionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,17 @@ public class ContributionController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(contributions, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/contributions")
+    public ResponseEntity<Contribution> registerContribution(@Valid @RequestBody ContributionDto registerContributionDto) {
+        try {
+            Contribution _contribution = contributionRepository
+                    .save(registerContributionDto.toContribution());
+            return new ResponseEntity<>(_contribution, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -18,7 +18,6 @@ public class Techno {
     @Column(name = "name")
     private String name;
 
-
     @JsonBackReference
     @OneToMany(mappedBy = "techno", orphanRemoval = true)
     private Set<Contribution> contributions = new LinkedHashSet<>();

@@ -1,6 +1,9 @@
 package com.acme.apitutorial.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Date;
 
@@ -30,6 +33,17 @@ public class Contribution {
     @Temporal(TemporalType.TIMESTAMP)
     @JoinColumn(name = "created_at")
     private Date createdAt;
+
+    @JoinColumn(name = "level")
+    private Integer level;
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
