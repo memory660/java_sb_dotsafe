@@ -1,8 +1,6 @@
 package com.acme.apitutorial.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
