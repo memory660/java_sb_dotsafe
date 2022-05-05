@@ -33,6 +33,30 @@ GET http://localhost:8080/api/users
 GET http://localhost:8080/api/users/1/contributions
 ```
 
+POST http://localhost:8080/api/auth/signup
+
+```
+{
+"username": "user1",
+"email": "user1@gmail.com",
+"password": "22222222"
+}
+```
+
+POST http://localhost:8080/api/auth/signin
+
+```
+{
+    "username": "user1",
+    "password": "22222222"
+}
+```
+
+GET http://localhost:8080/api/users/1/contributions
+```
+Bearer ................................
+```
+
 # Read Me First
 The following was discovered as part of building this project:
 
