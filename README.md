@@ -1,5 +1,7 @@
 # TUTORIAL
 
+GET http://localhost:8080/api/tutorials
+
 POST http://localhost:8080/api/tutorials
 ```json
 {

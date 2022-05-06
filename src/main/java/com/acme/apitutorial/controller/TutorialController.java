@@ -5,6 +5,7 @@ import com.acme.apitutorial.repository.TutorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ public class TutorialController {
 
     @Autowired
     TutorialRepository tutorialRepository;
+
+    @Secured("ROLE_USER")
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
         try {

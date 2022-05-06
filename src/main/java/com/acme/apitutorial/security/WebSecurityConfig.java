@@ -24,9 +24,9 @@ import javax.servlet.Filter;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        // securedEnabled = true,
-        // jsr250Enabled = true,
-        prePostEnabled = true)
+        securedEnabled = true,  // controller -> @Secured("ROLE_VIEWER")
+        jsr250Enabled = true,   // controller -> @RoleAllowed(....
+        prePostEnabled = true)  // controller -> @PreAuthorize(
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
