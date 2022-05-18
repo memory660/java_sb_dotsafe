@@ -19,7 +19,7 @@ public class TutorialController {
     @Autowired
     TutorialRepository tutorialRepository;
 
-    @Secured("ROLE_USER")
+    //@Secured("ROLE_USER")
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
         try {

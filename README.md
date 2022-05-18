@@ -1,4 +1,20 @@
-# TUTORIAL
+# TUTORIALS
+
+- ne pas sécuriser /api/tutorials:
+
+/apitutorial/security/WebSecurityConfig.java
+
+```
+                .antMatchers("/api/tutorials/**").permitAll()
+```
+
+- creation des tables au lancement
+- faire un nettoyage avant
+
+```
+mvn clean
+mvn spring-boot:run
+```
 
 GET http://localhost:8080/api/tutorials
 
