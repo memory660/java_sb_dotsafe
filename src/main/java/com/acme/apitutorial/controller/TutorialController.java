@@ -3,6 +3,7 @@ package com.acme.apitutorial.controller;
 import com.acme.apitutorial.model.Tutorial;
 import com.acme.apitutorial.repository.TutorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -18,6 +19,38 @@ public class TutorialController {
 
     @Autowired
     TutorialRepository tutorialRepository;
+
+
+    @GetMapping("/tutorials/one")
+    public ResponseEntity<List<Tutorial>> getTutorialsOne(@RequestParam(required = false) String title) {
+        Optional<Tutorial> tutorialData = tutorialRepository.findByDescription("description1");
+        if (tutorialData.isPresent()) {
+            return new ResponseEntity(tutorialData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/tutorials/x")
+    public ResponseEntity<List<Tutorial>> getTutorialsX(@RequestParam(required = false) String title) {
+        try {
+            Sort sort = Sort.by("title").ascending()
+                    .and(Sort.by("description").descending());
+            List<Tutorial> tutorials = new ArrayList<Tutorial>();
+            if (title == null)
+                tutorialRepository.findByPublishedOrderByLevelDesc(true).forEach(tutorials::add);
+            else
+                tutorialRepository.findByTitleContaining(title).forEach(tutorials::add);
+            if (tutorials.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(tutorials, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
     //@Secured("ROLE_USER")
     @GetMapping("/tutorials")
