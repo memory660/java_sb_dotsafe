@@ -1,9 +1,12 @@
 package com.acme.apitutorial.payload.request;
 
+import lombok.Builder;
+
 import java.util.Set;
 
 import javax.validation.constraints.*;
 
+@Builder
 public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 20)

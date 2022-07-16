@@ -3,6 +3,7 @@ package com.acme.apitutorial.security;
 
 import com.acme.apitutorial.security.jwt.AuthEntryPointJwt;
 import com.acme.apitutorial.security.jwt.AuthTokenFilter;
+import com.acme.apitutorial.security.services.UserDetailsImpl;
 import com.acme.apitutorial.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

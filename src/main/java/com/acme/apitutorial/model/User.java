@@ -1,6 +1,10 @@
 package com.acme.apitutorial.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,11 +14,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@Builder
 @Table(	name = "user",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,8 +50,7 @@ public class User {
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private Set<Contribution> contributions = new LinkedHashSet<>();
 
-    public User() {
-    }
+
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
